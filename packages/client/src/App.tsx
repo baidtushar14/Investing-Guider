@@ -1,17 +1,17 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 
 function App() {
-const [message,setMessage]= useState('');
-useEffect(()=>{
-  fetch('/api/hello')
-  .then(res=>res.json())
-  .then(data=>setMessage(data.message))
-},[]);
+  const [message, setMessage] = useState("");
+  useEffect(() => {
+    fetch("/api/hello")
+      .then((res) => res.json())
+      .then((data) => setMessage(data.message));
+  }, []);
   return (
     <>
-      {message}
+      <p className="font-bold p-4">{message}</p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
