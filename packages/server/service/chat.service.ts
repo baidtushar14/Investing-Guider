@@ -1,10 +1,13 @@
 import OpenAI from 'openai';
 import { conversationRespository } from '../repositories/conversation.repo';
+import template from '../prompts/chatbot.txt';
 
 const client = new OpenAI({
    apiKey: process.env.OPENAI_API_KEY,
    baseURL: 'https://openrouter.ai/api/v1',
 });
+// const info=fs.readFileSync(path.join(__dirname,'..','prompts'),'utf-8')
+const instruction = template;
 type chatResponse = {
    id: string;
    message: string;
@@ -16,6 +19,7 @@ export const chatService = {
    ): Promise<chatResponse> {
       const response = await client.responses.create({
          model: 'openai/gpt-oss-120b:free',
+         instructions: instruction,
          input: prompt,
          temperature: 0.2,
          previous_response_id:
