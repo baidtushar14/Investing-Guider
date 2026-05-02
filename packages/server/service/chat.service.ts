@@ -1,6 +1,12 @@
 import OpenAI from 'openai';
 import { conversationRespository } from '../repositories/conversation.repo';
-import template from '../prompts/chatbot.txt';
+import fs from 'fs';
+import path from 'path';
+
+const template = fs.readFileSync(
+   path.join(process.cwd(), 'packages/server/prompts/chatbot.txt'),
+   'utf-8'
+);
 
 const client = new OpenAI({
    apiKey: process.env.OPENAI_API_KEY,
