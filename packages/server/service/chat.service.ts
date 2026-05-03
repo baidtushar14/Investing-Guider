@@ -3,17 +3,19 @@ import { conversationRespository } from '../repositories/conversation.repo';
 import fs from 'fs';
 import path from 'path';
 
-const template = fs.readFileSync(
-   path.join(process.cwd(), 'packages/server/prompts/chatbot.txt'),
-   'utf-8'
-);
+const getTemplate = () => {
+   return fs.readFileSync(
+      path.join(__dirname, '..', 'prompts', 'chatbot.txt'),
+      'utf-8'
+   );
+};
 
 const client = new OpenAI({
    apiKey: process.env.OPENAI_API_KEY,
    baseURL: 'https://openrouter.ai/api/v1',
 });
 // const info=fs.readFileSync(path.join(__dirname,'..','prompts'),'utf-8')
-const instruction = template;
+const instruction = getTemplate();
 type chatResponse = {
    id: string;
    message: string;
