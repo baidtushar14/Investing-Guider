@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "rootDir": "./",
+    "strict": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "noEmit": false
+  },
+  "include": [
+    "index.ts",
+    "route.ts",
+    "controller/**/*",
+    "service/**/*",
+    "repositories/**/*",
+    "prompts/**/*"
+  ],
+  "exclude": ["node_modules", "dist"]
+}
