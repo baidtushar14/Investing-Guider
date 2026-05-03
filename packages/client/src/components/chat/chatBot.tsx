@@ -16,7 +16,11 @@ const ChatBot = () => {
          setError('');
          setMessages((prev) => [...prev, { content: prompt, role: 'user' }]);
          setIsBotType(true);
-         const { data } = await axios.post<ChatResponse>('/api/chat', {
+         const api = axios.create({
+            baseURL: import.meta.env.VITE_API_URL,
+         });
+
+         const { data } = await api.post<ChatResponse>('/api/chat', {
             prompt,
             conversationId,
          });
